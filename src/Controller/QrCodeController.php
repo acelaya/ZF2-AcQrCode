@@ -28,18 +28,26 @@ class QrCodeController extends AbstractActionController implements QrCodeService
      */
     public function generateAction()
     {
-        $message    = $this->params()->fromRoute('message');
         $extension  = $this->params()->fromRoute('extension', QrCodeServiceInterface::DEFAULT_EXTENSION);
-        $size       = $this->params()->fromRoute('size', QrCodeServiceInterface::DEFAULT_SIZE);
+        $content    = $this->qrCodeService->getQrCodeContent($this->params());
+        return $this->createResponse($content, $this->qrCodeService->generateContentType($extension));
+    }
 
-        $content    = $this->qrCodeService->getQrCodeContent($message, $extension, $size);
-        $resp       =  new HttpResponse();
+    /**
+     * Creates the response to be returned for a QR Code
+     * @param $content
+     * @param $contentType
+     * @return HttpResponse
+     */
+    protected function createResponse($content, $contentType)
+    {
+        $resp = new HttpResponse();
 
         $resp->setStatusCode(200)
-             ->setContent($content);
+            ->setContent($content);
         $resp->getHeaders()->addHeaders(array(
             'Content-Length'    => strlen($content),
-            'Content-Type'      => $this->qrCodeService->generateContentType($extension)
+            'Content-Type'      => $contentType
         ));
         return $resp;
     }

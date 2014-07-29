@@ -3,6 +3,7 @@ namespace Acelaya\QrCode\Service;
 
 use Acelaya\QrCode\Exception\InvalidExtensionException;
 use Endroid\QrCode\QrCode;
+use Zend\Mvc\Controller\Plugin\Params;
 
 /**
  * Class QrCodeService
@@ -28,14 +29,20 @@ class QrCodeService implements QrCodeServiceInterface
 
     /**
      * Returns a QrCode content to be rendered or saved
-     * @param $message
+     * @param string|Params $messageOrParams
      * @param string $extension
      * @param int $size
      * @return mixed
      */
-    public function getQrCodeContent($message, $extension = self::DEFAULT_EXTENSION, $size = self::DEFAULT_SIZE)
+    public function getQrCodeContent($messageOrParams, $extension = self::DEFAULT_EXTENSION, $size = self::DEFAULT_SIZE)
     {
-        $qrCode = new QrCode($message);
+        if ($messageOrParams instanceof Params) {
+            $extension          = $messageOrParams->fromRoute('extension', QrCodeServiceInterface::DEFAULT_EXTENSION);
+            $size               = $messageOrParams->fromRoute('size', QrCodeServiceInterface::DEFAULT_SIZE);
+            $messageOrParams    = $messageOrParams->fromRoute('message');
+        }
+
+        $qrCode = new QrCode($messageOrParams);
         $qrCode->setImageType($extension);
         $qrCode->setSize($size);
         return $qrCode->get();
