@@ -26,6 +26,12 @@ return array(
             )
 
         )
+    ),
+
+    'service_manager' => array(
+        'invokables' => array(
+            'Acelaya\QrCode\Service\QrCodeService' => 'Acelaya\QrCode\Service\QrCodeService'
+        )
     )
 
 );
