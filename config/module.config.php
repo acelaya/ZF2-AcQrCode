@@ -13,7 +13,7 @@ return array(
             'acelaya-qrcode' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/qr-code/generate/:message[/:extension[/:size]]',
+                    'route' => '/qr-code/generate/:message[.:extension[/:size]]',
                     'constraints' => array(
                         'extension' => 'jpg|jpeg|png|gif|wbmp',
                         'size' => '[0-9]+'
@@ -33,6 +33,12 @@ return array(
         'invokables' => array(
             'Acelaya\QrCode\Service\QrCodeService' => 'Acelaya\QrCode\Service\QrCodeService'
         )
-    )
+    ),
+
+    'view_helpers' => array(
+        'invokables' => array(
+            'qrCode' => 'Acelaya\QrCode\View\Helper\QrCodeHelper',
+        ),
+    ),
 
 );
