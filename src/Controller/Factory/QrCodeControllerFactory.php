@@ -3,6 +3,7 @@ namespace Acelaya\QrCode\Controller\Factory;
 
 use Acelaya\QrCode\Controller\QrCodeController;
 use Acelaya\QrCode\Service\QrCodeServiceInterface;
+use Zend\Mvc\Controller\ControllerManager;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -21,8 +22,9 @@ class QrCodeControllerFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
+        /** @var ControllerManager $serviceLocator */
         /** @var QrCodeServiceInterface $qrCodeService */
-        $qrCodeService = $serviceLocator->get('Acelaya\QrCode\Service\QrCodeService');
+        $qrCodeService = $serviceLocator->getServiceLocator()->get('Acelaya\QrCode\Service\QrCodeService');
         return new QrCodeController($qrCodeService);
     }
 }

@@ -3,7 +3,7 @@ namespace Acelaya\QrCode\Controller;
 
 use Acelaya\QrCode\Service\QrCodeServiceAwareInterface;
 use Acelaya\QrCode\Service\QrCodeServiceInterface;
-use Zend\Http\Response\Stream as StreamResponse;
+use Zend\Http\Response as HttpResponse;
 use Zend\Mvc\Controller\AbstractActionController;
 
 /**
@@ -28,7 +28,20 @@ class QrCodeController extends AbstractActionController implements QrCodeService
      */
     public function generateAction()
     {
-        return new StreamResponse();
+        $message    = $this->params()->fromRoute('message');
+        $extension  = $this->params()->fromRoute('extension', QrCodeServiceInterface::DEFAULT_EXTENSION);
+        $size       = $this->params()->fromRoute('size', QrCodeServiceInterface::DEFAULT_SIZE);
+
+        $content    = $this->qrCodeService->getQrCodeContent($message, $extension, $size);
+        $resp       =  new HttpResponse();
+
+        $resp->setStatusCode(200)
+             ->setContent($content);
+        $resp->getHeaders()->addHeaders(array(
+            'Content-Length'    => strlen($content),
+            'Content-Type'      => $this->qrCodeService->generateContentType($extension)
+        ));
+        return $resp;
     }
 
     /**
