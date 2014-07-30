@@ -36,8 +36,8 @@ return array(
     ),
 
     'view_helpers' => array(
-        'invokables' => array(
-            'qrCode' => 'Acelaya\QrCode\View\Helper\QrCodeHelper',
+        'factories' => array(
+            'qrCode' => 'Acelaya\QrCode\View\Helper\Factory\QrCodeHelperFactory',
         ),
     ),
 
