@@ -1,0 +1,5 @@
+<?php
+    $aditionalAttribs = '';
+    $endTag = $this->doctype()->isXhtml() ? '/' : '';
+?>
+<img src="<?php echo $this->src ?>" <?php echo $aditionalAttribs ?> <?php echo $endTag ?>>
