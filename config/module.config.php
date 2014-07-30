@@ -15,7 +15,7 @@ return array(
                 'options' => array(
                     'route' => '/qr-code/generate/:message[.:extension[/:size]]',
                     'constraints' => array(
-                        'extension' => 'jpg|jpeg|png|gif|wbmp',
+                        'extension' => 'jpg|jpeg|png|gif',
                         'size' => '[0-9]+'
                     ),
                     'defaults' => array(
