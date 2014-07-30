@@ -11,7 +11,7 @@ use Zend\View\Renderer\RendererInterface;
  * @author Alejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class QrCodeHelper extends AbstractHelper
+class QrCodeHelper extends AbstractHelper implements QrCodeHelperInterface
 {
     /**
      * @var RendererInterface
@@ -32,13 +32,20 @@ class QrCodeHelper extends AbstractHelper
         $this->router   = $router;
     }
 
+    /**
+     * Returns this if no params are provided, and returns a URL route otherwise
+     * @param null $message
+     * @param null $extension
+     * @param null $size
+     * @return $this|mixed
+     */
     public function __invoke($message = null, $extension = null, $size = null)
     {
         if (count(func_get_args()) == 0 || (!isset($message) && !isset($extension) && !isset($size))) {
             return $this;
         }
 
-        return $this->getRoute($message, $extension, $size);
+        return $this->assembleRoute($message, $extension, $size);
     }
 
     /**
@@ -52,7 +59,7 @@ class QrCodeHelper extends AbstractHelper
     public function renderImg($message = null, $extension = null, $size = null, $attribs = array())
     {
         return $this->renderer->render('acelaya/qr-code/image', array(
-            'src' => $this->getRoute($message, $extension, $size),
+            'src' => $this->assembleRoute($message, $extension, $size),
             'attribs' => $attribs
         ));
     }
@@ -64,7 +71,7 @@ class QrCodeHelper extends AbstractHelper
      * @param null $size
      * @return mixed
      */
-    public function getRoute($message, $extension = null, $size = null)
+    public function assembleRoute($message, $extension = null, $size = null)
     {
         $params = array('message' => $message);
         if (isset($extension)) {
