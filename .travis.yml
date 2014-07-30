@@ -16,4 +16,4 @@ before_script:
   - composer --version
   - composer install
 
-script: ./vendor/bin/phpunit -c tests/phpunit.xml
+script: ./vendor/bin/phpunit -c test/phpunit.xml
