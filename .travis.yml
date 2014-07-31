@@ -15,5 +15,6 @@ before_script:
   - composer self-update
   - composer --version
   - composer install
+  - mkdir build
 
-script: ./vendor/bin/phpunit -c test/phpunit.xml
+script: ./vendor/bin/phpunit -c test/phpunit.xml --coverage-clover build/clover.xml
