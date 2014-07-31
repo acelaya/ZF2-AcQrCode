@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="./bootstrap.php">
+<phpunit bootstrap="./bootstrap.php"
+         colors="true">
     <testsuites>
 
         <testsuite name="Acelaya\QrCode Module class">
@@ -8,6 +9,9 @@
         </testsuite>
         <testsuite name="Acelaya\QrCode Services">
             <directory>./Service</directory>
+        </testsuite>
+        <testsuite name="Acelaya\QrCode Controllers">
+            <directory>./Controller</directory>
         </testsuite>
         
     </testsuites>

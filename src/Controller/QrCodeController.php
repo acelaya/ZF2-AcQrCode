@@ -44,7 +44,7 @@ class QrCodeController extends AbstractActionController implements QrCodeService
         $resp = new HttpResponse();
 
         $resp->setStatusCode(200)
-            ->setContent($content);
+             ->setContent($content);
         $resp->getHeaders()->addHeaders(array(
             'Content-Length'    => strlen($content),
             'Content-Type'      => $contentType
