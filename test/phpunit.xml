@@ -13,6 +13,9 @@
         <testsuite name="Acelaya\QrCode Controllers">
             <directory>./Controller</directory>
         </testsuite>
+        <testsuite name="Acelaya\QrCode Exceptions">
+            <directory>./Exception</directory>
+        </testsuite>
         
     </testsuites>
     
