@@ -16,13 +16,15 @@
         <testsuite name="Acelaya\QrCode Exceptions">
             <directory>./Exception</directory>
         </testsuite>
+        <testsuite name="Acelaya\QrCode Views">
+            <directory>./View</directory>
+        </testsuite>
         
     </testsuites>
     
     <filter>
         <whitelist>
             <directory>../src</directory>
-            <file>../Module.php</file>
         </whitelist>
     </filter>
 </phpunit>
