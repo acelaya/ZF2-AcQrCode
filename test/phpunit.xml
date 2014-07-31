@@ -3,6 +3,9 @@
 <phpunit bootstrap="./bootstrap.php">
     <testsuites>
 
+        <testsuite name="Acelaya\QrCode Module class">
+            <file>./ModuleTest.php</file>
+        </testsuite>
         <testsuite name="Acelaya\QrCode Services">
             <directory>./Service</directory>
         </testsuite>
