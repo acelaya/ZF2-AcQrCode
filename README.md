@@ -5,7 +5,7 @@
 [![Total Downloads](https://poser.pugx.org/acelaya/zf2-acqrcode/downloads.png)](https://packagist.org/packages/acelaya/zf2-acqrcode)
 [![License](https://poser.pugx.org/acelaya/zf2-acqrcode/license.png)](https://packagist.org/packages/acelaya/zf2-acqrcode)
 
-This Zend Framework 2 module allows you to easely generate QR codes by using the [Endroid QR Code](https://github.com/endroid/QrCode) library, by [Endroid](https://github.com/endroid).
+This Zend Framework 2 module allows you to easily generate QR codes by using the [Endroid QR Code](https://github.com/endroid/QrCode) library, by [Endroid](https://github.com/endroid).
 
 It has been based on the [EndroidQrCodeBundle](https://github.com/endroid/EndroidQrCodeBundle) Symfony bundle.
 
@@ -21,7 +21,7 @@ The preferred installation method is by using [composer](https://getcomposer.com
     }
 }
 ```
-Finally update your dependencies with composer `php composer.phar update`
+and update your dependencies with composer `php composer.phar update`
 
 After that you just need to add the module to the list of enabled modules in you `application.config.php` file
 
@@ -57,9 +57,11 @@ To ease that task, a view helper is provided. By using it you can directly rende
 
 ```php
 <?php echo $this->qrCode()->renderImg('The message', 'png'); ?>
+```
 
-// This will produce this image
+This will produce this image
 
+```html
 <img src="/qr-code/generate/The%20message.png">
 ```
 
@@ -67,9 +69,11 @@ If you need aditional attributes in the img tag, the fourth argument is an array
 
 ```php
 <?php echo $this->qrCode()->renderImg('The message', 'png', '300', ['title' => 'This is a cool QR code', 'class' => 'img-thumbnail']); ?>
+```
 
-// This will produce this image
+This will produce this image
 
+```html
 <img src="/qr-code/generate/The%20message.png/300" title="This is a cool QR code" class="img-thumbnail">
 ```
 
@@ -84,7 +88,7 @@ If you just need to get the route, this view helper is a shortcut to the `url` v
 </div>
 ```
 
-If you need aditional options to be used, it can be done like this
+If you need aditional route options to be used, it can be done like this.
 
 ```php
 <div>
@@ -113,5 +117,5 @@ file_put_contents('/path/to/file.png', $content);
 Testing
 -------
 
-This module includes all its unit tests and follows dependency injection and abstraction in order for you to be ablo to test any component depending on its classes.
+This module includes all its unit tests and follows dependency injection and abstraction in order for you to be able to test any component depending on its classes.
 
