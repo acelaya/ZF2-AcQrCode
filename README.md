@@ -9,7 +9,8 @@ This Zend Framework 2 module allows you to easely generate QR codes by using the
 
 It has been based on the [EndroidQrCodeBundle](https://github.com/endroid/EndroidQrCodeBundle) Symfony bundle.
 
-### Installation
+Installation
+------------
 
 The preferred installation method is by using [composer](https://getcomposer.com). Just add this package to your composer.json
 
@@ -33,7 +34,8 @@ After that you just need to add the module to the list of enabled modules in you
 )
 ```
 
-### Usage
+Usage
+-----
 
 The module can be used in many ways. It includes a route which points to a controller which returns the QR code image as a response.
 
@@ -108,7 +110,8 @@ $content = $service->getQrCodeContent('http://www.alejandrocelaya.com/', 'png');
 file_put_contents('/path/to/file.png', $content);
 ```
 
-### Testing
+Testing
+-------
 
 This module includes all its unit tests and follows dependency injection and abstraction in order for you to be ablo to test any component depending on its classes.
 
