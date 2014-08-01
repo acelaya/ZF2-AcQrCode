@@ -1,0 +1,20 @@
+language: php
+
+branches:
+  only:
+    - master
+    - develop
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+
+before_script:
+  - composer self-update
+  - composer --version
+  - composer install
+  - mkdir build
+
+script: ./vendor/bin/phpunit -c test/phpunit.xml --coverage-clover build/clover.xml

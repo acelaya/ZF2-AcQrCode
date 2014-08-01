@@ -1,0 +1,9 @@
+<?php
+    /** @var Zend\View\Renderer\PhpRenderer $this */
+    $aditionalAttribs = '';
+    foreach ($this->attribs as $key => $value) {
+        $aditionalAttribs .= sprintf('%s="%s" ', $key, $value);
+    }
+    $endTag = $this->doctype()->isXhtml() ? '/' : '';
+?>
+<img src="<?php echo $this->src ?>" <?php echo $aditionalAttribs ?> <?php echo $endTag ?>>

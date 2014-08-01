@@ -1,18 +1,23 @@
 <?php
-namespace Acelaya\QrCode\Service;
+namespace Acelaya\QrCode\Test\Service;
 
 use Acelaya\QrCode\Exception\InvalidExtensionException;
+use Acelaya\QrCode\Service\QrCodeServiceInterface;
 use Zend\Mvc\Controller\Plugin\Params;
 
 /**
- * Interface QrCodeServiceInterface
- * @author Alejandro Celaya Alastrué
- * @link http://www.alejandrocelaya.com
+ * Class QrCodeServiceMock
+ * @author
+ * @link
  */
-interface QrCodeServiceInterface
+class QrCodeServiceMock implements QrCodeServiceInterface
 {
-    const DEFAULT_EXTENSION = 'jpg';
-    const DEFAULT_SIZE      = 200;
+    private $content;
+
+    public function __construct($content = '')
+    {
+        $this->content = $content;
+    }
 
     /**
      * Generates the content-type corresponding to the provided extension
@@ -20,7 +25,10 @@ interface QrCodeServiceInterface
      * @return string
      * @throws InvalidExtensionException
      */
-    public function generateContentType($extension);
+    public function generateContentType($extension)
+    {
+        return 'image/foo';
+    }
 
     /**
      * Returns a QrCode content to be rendered or saved
@@ -33,5 +41,7 @@ interface QrCodeServiceInterface
         $messageOrParams,
         $extension = self::DEFAULT_EXTENSION,
         $size = self::DEFAULT_SIZE
-    );
+    ) {
+        return $this->content;
+    }
 }
