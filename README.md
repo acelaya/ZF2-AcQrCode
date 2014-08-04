@@ -1,7 +1,7 @@
 ## ZF2-AcQrCode
 
 [![Build Status](https://travis-ci.org/acelaya/ZF2-AcQrCode.svg?branch=develop)](https://travis-ci.org/acelaya/ZF2-AcQrCode)
-[![Coverage Status](https://coveralls.io/repos/acelaya/ZF2-AcQrCode/badge.png)](https://coveralls.io/r/acelaya/ZF2-AcQrCode)
+[![Code Coverage](https://scrutinizer-ci.com/g/acelaya/ZF2-AcQrCode/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/acelaya/ZF2-AcQrCode/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/acelaya/ZF2-AcQrCode/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/acelaya/ZF2-AcQrCode/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/acelaya/zf2-acqrcode/v/stable.png)](https://packagist.org/packages/acelaya/zf2-acqrcode)
 [![Total Downloads](https://poser.pugx.org/acelaya/zf2-acqrcode/downloads.png)](https://packagist.org/packages/acelaya/zf2-acqrcode)
