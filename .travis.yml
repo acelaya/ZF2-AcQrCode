@@ -14,7 +14,12 @@ php:
 before_script:
   - composer self-update
   - composer --version
-  - composer install
-  - mkdir build
+  - composer install --no-interaction
 
-script: ./vendor/bin/phpunit -c test/phpunit.xml --coverage-clover build/clover.xml
+script:
+  - mkdir build
+  - ./vendor/bin/phpunit -c test/phpunit.xml --coverage-clover build/clover.xml
+
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover build/clover.xml
