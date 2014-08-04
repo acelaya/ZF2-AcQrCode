@@ -117,5 +117,5 @@ file_put_contents('/path/to/file.png', $content);
 Testing
 -------
 
-This module includes all its unit tests and follows dependency injection and abstraction in order for you to be able to test any component depending on its classes.
+This module includes all its unit tests and follows dependency injection and abstraction for you to be able to test any component that depend on its classes.
 
