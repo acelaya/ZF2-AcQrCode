@@ -13,7 +13,8 @@ return array(
             'acelaya-qrcode' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/qr-code/generate/:message[.:extension[/:size]]',
+                    //'route' => '/qr-code/generate/:message[.:extension[/:size]]',
+                    'route' => '/qr-code/generate/:message[[.][:extension][/:size]]',
                     'constraints' => array(
                         'extension' => 'jpg|jpeg|png|gif',
                         'size' => '[0-9]+'
