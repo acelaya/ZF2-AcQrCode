@@ -1,6 +1,7 @@
 <?php
 namespace Acelaya\QrCode\View\Helper\Factory;
 
+use Acelaya\QrCode\Service\QrCodeServiceInterface;
 use Acelaya\QrCode\View\Helper\QrCodeHelper;
 use Zend\Mvc\Router\RouteStackInterface;
 use Zend\ServiceManager\FactoryInterface;
@@ -29,6 +30,8 @@ class QrCodeHelperFactory implements FactoryInterface
                     new PhpRenderer();
         /** @var RouteStackInterface $router */
         $router = $serviceLocator->getServiceLocator()->get('router');
-        return new QrCodeHelper($renderer, $router);
+        /** @var QrCodeServiceInterface $service */
+        $service = $serviceLocator->getServiceLocator()->get('Acelaya\QrCode\Service\QrCodeService');
+        return new QrCodeHelper($renderer, $router, $service);
     }
 }
