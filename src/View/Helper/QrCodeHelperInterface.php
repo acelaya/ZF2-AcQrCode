@@ -19,23 +19,23 @@ interface QrCodeHelperInterface
 
     /**
      * Renders a img tag pointing defined QR code
-     * @param null $message
-     * @param null $extension
-     * @param null $size
+     * @param string $message
+     * @param string|null $extension
+     * @param int|null $size
      * @param array $attribs
      * @return string
      */
-    public function renderImg($message = null, $extension = null, $size = null, $attribs = array());
+    public function renderImg($message, $extension = null, $size = null, $attribs = array());
 
     /**
      * Renders a img tag with a base64-encoded QR code
-     * @param null $message
-     * @param null $extension
-     * @param null $size
+     * @param string $message
+     * @param string|null $extension
+     * @param int|null $size
      * @param array $attribs
      * @return mixed
      */
-    public function renderBase64Img($message = null, $extension = null, $size = null, $attribs = array());
+    public function renderBase64Img($message, $extension = null, $size = null, $attribs = array());
 
     /**
      * Returns the assembled route as string
