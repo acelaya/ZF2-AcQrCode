@@ -43,7 +43,8 @@ return array(
 
     'view_manager' => array(
         'template_map' => array(
-            'acelaya/qr-code/image' => __DIR__ . '/../view/acelaya/qr-code/image.phtml'
+            'acelaya/qr-code/image'         => __DIR__ . '/../view/acelaya/qr-code/image.phtml',
+            'acelaya/qr-code/image-base64'  => __DIR__ . '/../view/acelaya/qr-code/image-base64.phtml',
         )
     )
 

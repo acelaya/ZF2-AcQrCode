@@ -13,6 +13,9 @@ use Zend\View\Renderer\RendererInterface;
  */
 class QrCodeHelper extends AbstractHelper implements QrCodeHelperInterface
 {
+    const IMG_TEMPLATE          = 'acelaya/qr-code/image';
+    const IMG_BASE64_TEMPLATE   = 'acelaya/qr-code/image-base64';
+
     /**
      * @var RendererInterface
      */
@@ -78,9 +81,9 @@ class QrCodeHelper extends AbstractHelper implements QrCodeHelperInterface
             }
         }
 
-        return $this->renderer->render('acelaya/qr-code/image', array(
-            'src' => $this->assembleRoute($message, $extension, $size),
-            'attribs' => $attribs
+        return $this->renderer->render(self::IMG_TEMPLATE, array(
+            'src'       => $this->assembleRoute($message, $extension, $size),
+            'attribs'   => $attribs
         ));
     }
 
@@ -104,8 +107,16 @@ class QrCodeHelper extends AbstractHelper implements QrCodeHelperInterface
             }
         }
 
-        $image = $this->qrCodeService->getQrCodeContent($message, $extension, $size);
-        $base64Image = base64_encode($image);
+        $image          = $this->qrCodeService->getQrCodeContent($message, $extension, $size);
+        $contentType    = $this->qrCodeService->generateContentType(
+            isset($extension) ? $extension : QrCodeServiceInterface::DEFAULT_EXTENSION
+        );
+
+        return $this->renderer->render(self::IMG_BASE64_TEMPLATE, array(
+            'base64'        => base64_encode($image),
+            'contentType'   => $contentType,
+            'attribs'       => $attribs
+        ));
     }
 
     /**
