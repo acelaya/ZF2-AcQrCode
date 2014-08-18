@@ -68,6 +68,16 @@ class QrCodeHelper extends AbstractHelper implements QrCodeHelperInterface
      */
     public function renderImg($message, $extension = null, $size = null, $attribs = array())
     {
+        if (isset($extension)) {
+            if (is_array($extension)) {
+                $attribs = $extension;
+                $extension = null;
+            } elseif (isset($size) && is_array($size)) {
+                $attribs = $size;
+                $size = null;
+            }
+        }
+
         return $this->renderer->render('acelaya/qr-code/image', array(
             'src' => $this->assembleRoute($message, $extension, $size),
             'attribs' => $attribs
@@ -84,6 +94,16 @@ class QrCodeHelper extends AbstractHelper implements QrCodeHelperInterface
      */
     public function renderBase64Img($message, $extension = null, $size = null, $attribs = array())
     {
+        if (isset($extension)) {
+            if (is_array($extension)) {
+                $attribs = $extension;
+                $extension = null;
+            } elseif (isset($size) && is_array($size)) {
+                $attribs = $size;
+                $size = null;
+            }
+        }
+
         $image = $this->qrCodeService->getQrCodeContent($message, $extension, $size);
         $base64Image = base64_encode($image);
     }
