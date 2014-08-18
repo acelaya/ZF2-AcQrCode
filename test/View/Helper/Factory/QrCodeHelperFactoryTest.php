@@ -1,6 +1,7 @@
 <?php
 namespace Acelaya\QrCode\Test\View\Helper\Factory;
 
+use Acelaya\QrCode\Test\Service\QrCodeServiceMock;
 use Acelaya\QrCode\Test\Service\ServiceManagerMock;
 use Acelaya\QrCode\View\Helper\Factory\QrCodeHelperFactory;
 use Acelaya\QrCode\View\Helper\QrCodeHelper;
@@ -32,7 +33,8 @@ class QrCodeHelperFactoryTest extends \PHPUnit_Framework_TestCase
     private function createServiceManager()
     {
         return new ServiceManagerMock(array(
-            'router' => new TreeRouteStack()
+            'router' => new TreeRouteStack(),
+            'Acelaya\QrCode\Service\QrCodeService' => new QrCodeServiceMock()
         ));
     }
 }

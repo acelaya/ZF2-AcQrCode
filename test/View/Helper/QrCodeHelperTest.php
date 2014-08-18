@@ -1,6 +1,7 @@
 <?php
 namespace Acelaya\QrCode\Test\View\Helper;
 
+use Acelaya\QrCode\Test\Service\QrCodeServiceMock;
 use Acelaya\QrCode\View\Helper\QrCodeHelper;
 use Zend\Mvc\Router\Http\TreeRouteStack;
 use Zend\View\Renderer\PhpRenderer;
@@ -24,7 +25,7 @@ class QrCodeHelperTest extends \PHPUnit_Framework_TestCase
         $renderer = new PhpRenderer();
         $renderer->setResolver(new TemplateMapResolver($config['view_manager']['template_map']));
         $router = TreeRouteStack::factory($config['router']);
-        $this->helper = new QrCodeHelper($renderer, $router);
+        $this->helper = new QrCodeHelper($renderer, $router, new QrCodeServiceMock('foobar'));
     }
 
     public function testAssembleRoute()
