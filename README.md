@@ -58,30 +58,42 @@ By default the extension is jpg, and the size is 200. The message has to be prov
 To ease that task, a view helper is provided. By using it you can directly render img tags pointing to that QR code or just get the assembled route just like you would do with the `url` view helper.
 
 ```php
-<?php echo $this->qrCode()->renderImg('The message', 'png'); ?>
+<?php echo $this->qrCode()->renderImg('The message', 'png', 300); ?>
 ```
 
 This will produce this image
 
 ```html
-<img src="/qr-code/generate/The%20message.png">
+<img src="/qr-code/generate/The%20message.png/300">
 ```
 
-If you need aditional attributes in the img tag, the fourth argument is an array with the attributes and their values.
+If you need aditional attributes in the img tag, if the last argument is an array, it will be treated as the attributes and their values.
 
 ```php
-<?php echo $this->qrCode()->renderImg('The message', 'png', '300', ['title' => 'This is a cool QR code', 'class' => 'img-thumbnail']); ?>
+<?php echo $this->qrCode()->renderImg('The message', 'png', ['title' => 'This is a cool QR code', 'class' => 'img-thumbnail']); ?>
 ```
 
-This will produce this image
+This will produce this image:
 
 ```html
-<img src="/qr-code/generate/The%20message.png/300" title="This is a cool QR code" class="img-thumbnail">
+<img src="/qr-code/generate/The%20message.png" title="This is a cool QR code" class="img-thumbnail">
 ```
 
-If your application is XHTML, the image tag will automatically be closed with `/>`. If it is HTML5 it will be closed with just `>`
+You can also render a base64-encoded image, instead of using an internal route. This is very useful when you need to render URLs, which is one of the most common use cases.
 
-If you just need to get the route, this view helper is a shortcut to the `url` view helper if you use it like this.
+```php
+<?php echo $this->qrCode()->renderBase64Img('http://www.alejandrocelaya.com/skills', 'gif', ['title' => 'This is a cool QR code', 'class' => 'img-thumbnail']) ?>
+```
+
+This will produce this image:
+
+```html
+<img src="data:image/gif;base64,12345...AaBbCcDd...YyZz" title="This is a cool QR code" class="img-thumbnail">
+```
+
+In both cases, if your application is XHTML, the image tag will be automatically closed with `/>`. If it is HTML5 it will be closed with just `>`
+
+If you just need to get the route, this view helper is a shortcut to the `url` view helper when used like this.
 
 ```php
 <div>
@@ -110,7 +122,7 @@ The returned object is a `Acelaya\QrCode\Service\QrCodeService` which implements
 ```php
 /** @var \Zend\ServiceManager\ServiceLocatorInterface $sm */
 $service = $sm->get('Acelaya\QrCode\Service\QrCodeService');
-$content = $service->getQrCodeContent('http://www.alejandrocelaya.com/', 'png');
+$content = $service->getQrCodeContent('http://www.alejandrocelaya.com/contact', 'png');
 
 // Save the image to disk
 file_put_contents('/path/to/file.png', $content);
