@@ -43,8 +43,8 @@ class QrCodeService implements QrCodeServiceInterface
         }
 
         $qrCode = new QrCode($messageOrParams);
-        $qrCode->setImageType($extension);
-        $qrCode->setSize($size);
+        $qrCode->setImageType(isset($extension) ? $extension : self::DEFAULT_EXTENSION);
+        $qrCode->setSize(isset($size) ? $size : self::DEFAULT_SIZE);
         return $qrCode->get();
     }
 }
