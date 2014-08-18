@@ -22,14 +22,24 @@ class QrCodeHelper extends AbstractHelper implements QrCodeHelperInterface
      */
     protected $router;
     /**
+     * @var QrCodeServiceInterface
+     */
+    protected $qrCodeService;
+    /**
      * @var array
      */
     protected $routeOptions = array();
 
-    public function __construct(RendererInterface $renderer, RouteStackInterface $router)
+    /**
+     * @param RendererInterface $renderer
+     * @param RouteStackInterface $router
+     * @param QrCodeServiceInterface $qrCodeService
+     */
+    public function __construct(RendererInterface $renderer, RouteStackInterface $router, QrCodeServiceInterface $qrCodeService)
     {
-        $this->renderer = $renderer;
-        $this->router   = $router;
+        $this->renderer         = $renderer;
+        $this->router           = $router;
+        $this->qrCodeService    = $qrCodeService;
     }
 
     /**
@@ -62,6 +72,19 @@ class QrCodeHelper extends AbstractHelper implements QrCodeHelperInterface
             'src' => $this->assembleRoute($message, $extension, $size),
             'attribs' => $attribs
         ));
+    }
+
+    /**
+     * Renders a img tag with a base64-encoded QR code
+     * @param null $message
+     * @param null $extension
+     * @param null $size
+     * @param array $attribs
+     * @return mixed
+     */
+    public function renderBase64Img($message = null, $extension = null, $size = null, $attribs = array())
+    {
+        // TODO: Implement renderBase64Img() method.
     }
 
     /**

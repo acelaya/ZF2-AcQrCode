@@ -28,6 +28,16 @@ interface QrCodeHelperInterface
     public function renderImg($message = null, $extension = null, $size = null, $attribs = array());
 
     /**
+     * Renders a img tag with a base64-encoded QR code
+     * @param null $message
+     * @param null $extension
+     * @param null $size
+     * @param array $attribs
+     * @return mixed
+     */
+    public function renderBase64Img($message = null, $extension = null, $size = null, $attribs = array());
+
+    /**
      * Returns the assembled route as string
      * @param $message
      * @param null $extension
