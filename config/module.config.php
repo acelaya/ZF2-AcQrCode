@@ -31,8 +31,9 @@ return array(
     ),
 
     'service_manager' => array(
-        'invokables' => array(
-            'Acelaya\QrCode\Service\QrCodeService' => 'Acelaya\QrCode\Service\QrCodeService'
+        'factories' => array(
+            'Acelaya\QrCode\Service\QrCodeService' => 'Acelaya\QrCode\Service\Factory\QrCodeServiceFactory',
+            'Acelaya\QrCode\Options\QrCodeOptions' => 'Acelaya\QrCode\Options\Factory\QrCodeOptionsFactory',
         )
     ),
 
