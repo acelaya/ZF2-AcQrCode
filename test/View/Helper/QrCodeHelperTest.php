@@ -107,6 +107,10 @@ class QrCodeHelperTest extends \PHPUnit_Framework_TestCase
             '/qr-code/generate/foobar.gif/432',
             $this->helper->__invoke('foobar', 'gif', 432)
         );
+        $this->assertStringStartsWith(
+            '/qr-code/generate/foobar.gif/432/25',
+            $this->helper->__invoke('foobar', 'gif', 432, 25)
+        );
     }
 
     public function testSetRouteOptions()

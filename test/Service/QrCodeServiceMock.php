@@ -32,16 +32,16 @@ class QrCodeServiceMock implements QrCodeServiceInterface
 
     /**
      * Returns a QrCode content to be rendered or saved
+     * If the first argument is a Params object, all the information will be tried to be fetched for it,
+     * ignoring any other argument
      * @param string|Params $messageOrParams
      * @param string $extension
      * @param int $size
+     * @param int $padding
      * @return mixed
      */
-    public function getQrCodeContent(
-        $messageOrParams,
-        $extension = self::DEFAULT_EXTENSION,
-        $size = self::DEFAULT_SIZE
-    ) {
+    public function getQrCodeContent($messageOrParams, $extension = null, $size = null, $padding = null)
+    {
         return $this->content;
     }
 }
