@@ -2,6 +2,7 @@
 namespace Acelaya\QrCode\Service;
 
 use Acelaya\QrCode\Exception\InvalidExtensionException;
+use Acelaya\QrCode\Options\QrCodeOptions;
 use Endroid\QrCode\QrCode;
 use Zend\Mvc\Controller\Plugin\Params;
 
@@ -12,6 +13,19 @@ use Zend\Mvc\Controller\Plugin\Params;
  */
 class QrCodeService implements QrCodeServiceInterface
 {
+    /**
+     * @var QrCodeOptions
+     */
+    protected $options;
+
+    /**
+     * @param QrCodeOptions $options
+     */
+    public function __construct(QrCodeOptions $options)
+    {
+        $this->options = $options;
+    }
+
     /**
      * Generates the content-type corresponding to the provided extension
      * @param $extension
@@ -37,21 +51,23 @@ class QrCodeService implements QrCodeServiceInterface
      * @param int $padding
      * @return mixed
      */
-    public function getQrCodeContent(
-        $messageOrParams,
-        $extension = self::DEFAULT_EXTENSION,
-        $size = self::DEFAULT_SIZE,
-        $padding = self::DEFAULT_PADDING
-    ) {
+    public function getQrCodeContent($messageOrParams, $extension = null, $size = null, $padding = null)
+    {
         if ($messageOrParams instanceof Params) {
-            $extension          = $messageOrParams->fromRoute('extension', QrCodeServiceInterface::DEFAULT_EXTENSION);
-            $size               = $messageOrParams->fromRoute('size', QrCodeServiceInterface::DEFAULT_SIZE);
+            $extension          = $messageOrParams->fromRoute('extension', $this->options->getExtension());
+            $size               = $messageOrParams->fromRoute('size', $this->options->getSize());
+            $padding            = $messageOrParams->fromRoute('padding', $this->options->getPadding());
             $messageOrParams    = $messageOrParams->fromRoute('message');
+        } else {
+            $extension  = isset($extension) ? $extension : $this->options->getExtension();
+            $size       = isset($size) ? $size : $this->options->getSize();
+            $padding    = isset($padding) ? $padding : $this->options->getPadding();
         }
 
         $qrCode = new QrCode($messageOrParams);
-        $qrCode->setImageType(isset($extension) ? $extension : self::DEFAULT_EXTENSION);
-        $qrCode->setSize(isset($size) ? $size : self::DEFAULT_SIZE);
+        $qrCode->setImageType($extension);
+        $qrCode->setSize($size);
+        $qrCode->setPadding($padding);
         return $qrCode->get();
     }
 }

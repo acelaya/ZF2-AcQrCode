@@ -33,10 +33,5 @@ interface QrCodeServiceInterface
      * @param int $padding
      * @return mixed
      */
-    public function getQrCodeContent(
-        $messageOrParams,
-        $extension = self::DEFAULT_EXTENSION,
-        $size = self::DEFAULT_SIZE,
-        $padding = self::DEFAULT_PADDING
-    );
+    public function getQrCodeContent($messageOrParams, $extension = null, $size = null, $padding = null);
 }
