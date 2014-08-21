@@ -13,6 +13,7 @@ interface QrCodeServiceInterface
 {
     const DEFAULT_EXTENSION = 'jpg';
     const DEFAULT_SIZE      = 200;
+    const DEFAULT_PADDING   = 10;
 
     /**
      * Generates the content-type corresponding to the provided extension

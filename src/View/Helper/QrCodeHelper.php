@@ -38,8 +38,11 @@ class QrCodeHelper extends AbstractHelper implements QrCodeHelperInterface
      * @param RouteStackInterface $router
      * @param QrCodeServiceInterface $qrCodeService
      */
-    public function __construct(RendererInterface $renderer, RouteStackInterface $router, QrCodeServiceInterface $qrCodeService)
-    {
+    public function __construct(
+        RendererInterface $renderer,
+        RouteStackInterface $router,
+        QrCodeServiceInterface $qrCodeService
+    ) {
         $this->renderer         = $renderer;
         $this->router           = $router;
         $this->qrCodeService    = $qrCodeService;
