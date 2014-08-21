@@ -1,6 +1,7 @@
 <?php
 namespace Acelaya\QrCode\Options;
 
+use Acelaya\QrCode\Exception\InvalidExtensionException;
 use Acelaya\QrCode\Service\QrCodeServiceInterface;
 use Zend\Stdlib\AbstractOptions;
 
@@ -11,6 +12,11 @@ use Zend\Stdlib\AbstractOptions;
  */
 class QrCodeOptions extends AbstractOptions
 {
+    /**
+     * @var array
+     */
+    private $validExtensions = array('jpg', 'jpeg', 'png', 'gif');
+
     /**
      * @var string
      */
@@ -26,10 +32,15 @@ class QrCodeOptions extends AbstractOptions
 
     /**
      * @param string $extension
-     * @return $this;
+     * @return $this
+     * @throws InvalidExtensionException
      */
     public function setExtension($extension)
     {
+        if (!in_array($extension, $this->validExtensions)) {
+            throw InvalidExtensionException::fromExtension($extension);
+        }
+
         $this->extension = $extension;
         return $this;
     }
@@ -48,7 +59,7 @@ class QrCodeOptions extends AbstractOptions
      */
     public function setPadding($padding)
     {
-        $this->padding = $padding;
+        $this->padding = (int) $padding;
         return $this;
     }
 
@@ -66,7 +77,7 @@ class QrCodeOptions extends AbstractOptions
      */
     public function setSize($size)
     {
-        $this->size = $size;
+        $this->size = (int) $size;
         return $this;
     }
 

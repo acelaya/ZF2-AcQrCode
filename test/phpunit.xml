@@ -19,6 +19,9 @@
         <testsuite name="Acelaya\QrCode Views">
             <directory>./View</directory>
         </testsuite>
+        <testsuite name="Acelaya\QrCode Options">
+            <directory>./Options</directory>
+        </testsuite>
         
     </testsuites>
     
