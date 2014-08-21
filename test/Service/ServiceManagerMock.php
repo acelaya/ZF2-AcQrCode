@@ -31,7 +31,14 @@ class ServiceManagerMock implements ServiceLocatorInterface, ServiceLocatorAware
      */
     public function get($name)
     {
-        return $this->has($name) ? $this->services[$name] : null;
+        if (!$this->has($name)) {
+            throw new Exception\ServiceNotFoundException(sprintf(
+                "Service with name %s not found",
+                $name
+            ));
+        }
+
+        return $this->services[$name];
     }
 
     /**

@@ -1,0 +1,25 @@
+<?php
+return array(
+
+    'qr_code_options' => array(
+
+        /**
+         * Extension used by default when no extension is provided.
+         * Default value is jpg.
+         */
+        'extension' => 'jpg',
+        /**
+         * Default size of generated images in pixels.
+         * Images are always square, which means a size of 200 will result in a 200x200 image.
+         * Default value is 200.
+         */
+        'size' => 200,
+
+        /**
+         * Default padding used for images when no other is defined
+         */
+        'padding' => 10,
+
+    )
+
+);

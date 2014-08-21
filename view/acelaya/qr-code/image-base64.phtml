@@ -1,0 +1,10 @@
+<?php
+    /** @var Zend\View\Renderer\PhpRenderer $this */
+    $aditionalAttribs = '';
+    foreach ($this->attribs as $key => $value) {
+        $aditionalAttribs .= sprintf('%s="%s" ', $key, $value);
+    }
+    $endTag = $this->doctype()->isXhtml() ? '/' : '';
+    $src = sprintf('data:%s;base64,%s', $this->contentType, $this->base64);
+?>
+<img src="<?php echo $src ?>" <?php echo $aditionalAttribs ?> <?php echo $endTag ?>>

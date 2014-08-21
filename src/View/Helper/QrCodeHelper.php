@@ -13,6 +13,9 @@ use Zend\View\Renderer\RendererInterface;
  */
 class QrCodeHelper extends AbstractHelper implements QrCodeHelperInterface
 {
+    const IMG_TEMPLATE          = 'acelaya/qr-code/image';
+    const IMG_BASE64_TEMPLATE   = 'acelaya/qr-code/image-base64';
+
     /**
      * @var RendererInterface
      */
@@ -22,14 +25,27 @@ class QrCodeHelper extends AbstractHelper implements QrCodeHelperInterface
      */
     protected $router;
     /**
+     * @var QrCodeServiceInterface
+     */
+    protected $qrCodeService;
+    /**
      * @var array
      */
     protected $routeOptions = array();
 
-    public function __construct(RendererInterface $renderer, RouteStackInterface $router)
-    {
-        $this->renderer = $renderer;
-        $this->router   = $router;
+    /**
+     * @param RendererInterface $renderer
+     * @param RouteStackInterface $router
+     * @param QrCodeServiceInterface $qrCodeService
+     */
+    public function __construct(
+        RendererInterface $renderer,
+        RouteStackInterface $router,
+        QrCodeServiceInterface $qrCodeService
+    ) {
+        $this->renderer         = $renderer;
+        $this->router           = $router;
+        $this->qrCodeService    = $qrCodeService;
     }
 
     /**
@@ -37,30 +53,88 @@ class QrCodeHelper extends AbstractHelper implements QrCodeHelperInterface
      * @param null $message
      * @param null $extension
      * @param null $size
+     * @param null $padding
      * @return $this|mixed
      */
-    public function __invoke($message = null, $extension = null, $size = null)
+    public function __invoke($message = null, $extension = null, $size = null, $padding = null)
     {
-        if (count(func_get_args()) == 0 || (!isset($message) && !isset($extension) && !isset($size))) {
+        if (
+            count(func_get_args()) == 0
+            || ((!isset($message) && !isset($extension) && !isset($size) && !isset($padding)))
+        ) {
             return $this;
         }
 
-        return $this->assembleRoute($message, $extension, $size);
+        return $this->assembleRoute($message, $extension, $size, $padding);
     }
 
     /**
      * Renders a img tag pointing defined QR code
-     * @param null $message
-     * @param null $extension
-     * @param null $size
+     * @param string $message
+     * @param string|null $extension
+     * @param int|null $size
+     * @param null $padding
      * @param array $attribs
      * @return string
      */
-    public function renderImg($message = null, $extension = null, $size = null, $attribs = array())
+    public function renderImg($message, $extension = null, $size = null, $padding = null, $attribs = array())
     {
-        return $this->renderer->render('acelaya/qr-code/image', array(
-            'src' => $this->assembleRoute($message, $extension, $size),
-            'attribs' => $attribs
+        if (isset($extension)) {
+            if (is_array($extension)) {
+                $attribs = $extension;
+                $extension = null;
+            } elseif (isset($size)) {
+                if (is_array($size)) {
+                    $attribs = $size;
+                    $size = null;
+                } elseif (isset($padding) && is_array($padding)) {
+                    $attribs = $padding;
+                    $padding = null;
+                }
+            }
+        }
+
+        return $this->renderer->render(self::IMG_TEMPLATE, array(
+            'src'       => $this->assembleRoute($message, $extension, $size, $padding),
+            'attribs'   => $attribs
+        ));
+    }
+
+    /**
+     * Renders a img tag with a base64-encoded QR code
+     * @param string $message
+     * @param string|null $extension
+     * @param int|null $size
+     * @param null $padding
+     * @param array $attribs
+     * @return mixed
+     */
+    public function renderBase64Img($message, $extension = null, $size = null, $padding = null, $attribs = array())
+    {
+        if (isset($extension)) {
+            if (is_array($extension)) {
+                $attribs = $extension;
+                $extension = null;
+            } elseif (isset($size)) {
+                if (is_array($size)) {
+                    $attribs = $size;
+                    $size = null;
+                } elseif (isset($padding) && is_array($padding)) {
+                    $attribs = $padding;
+                    $padding = null;
+                }
+            }
+        }
+
+        $image          = $this->qrCodeService->getQrCodeContent($message, $extension, $size, $padding);
+        $contentType    = $this->qrCodeService->generateContentType(
+            isset($extension) ? $extension : QrCodeServiceInterface::DEFAULT_EXTENSION
+        );
+
+        return $this->renderer->render(self::IMG_BASE64_TEMPLATE, array(
+            'base64'        => base64_encode($image),
+            'contentType'   => $contentType,
+            'attribs'       => $attribs
         ));
     }
 
@@ -69,15 +143,19 @@ class QrCodeHelper extends AbstractHelper implements QrCodeHelperInterface
      * @param $message
      * @param null $extension
      * @param null $size
+     * @param null $padding
      * @return mixed
      */
-    public function assembleRoute($message, $extension = null, $size = null)
+    public function assembleRoute($message, $extension = null, $size = null, $padding = null)
     {
         $params = array('message' => $message);
         if (isset($extension)) {
             $params['extension'] = $extension;
             if (isset($size)) {
                 $params['size'] = $size;
+                if (isset($padding)) {
+                    $params['padding'] = $padding;
+                }
             }
         }
 
