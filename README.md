@@ -41,7 +41,7 @@ Usage
 
 The module can be used in many ways. It includes a route which points to a controller which returns the QR code image as a response.
 
-You can simply use that route to create your own QR codes by passing four simple arguments. The message to be encoded, the extension of the image (jpg, png or gif), the size of the image and the padding.
+You can simply use that route to create your own QR codes by passing four simple arguments. The message to be encoded, the extension of the image (jpeg, png or gif), the size of the image and the padding.
 
 In your view template do something like this.
 
@@ -52,7 +52,7 @@ In your view template do something like this.
 <img src="<?php echo $this->url('acelaya-qrcode', ['message' => 'Custom padding code', 'extension' => 'png', 'size' => '500', 'padding' => '20']) ?>">
 ```
 
-By default the extension is jpg, the size is 200 and the padding is 10. The message has to be provided.
+By default the extension is jpeg, the size is 200 and the padding is 10. The message has to be provided.
 
 Default values can be customized by copying the file `vendor/acelaya/zf2-acqrcode/config/qr_code.global.php.dist` to `config/autoload/qr_code.global.php` and replacing any of the params defined there.
 
