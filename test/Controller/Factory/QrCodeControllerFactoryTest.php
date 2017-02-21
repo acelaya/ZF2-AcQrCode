@@ -5,13 +5,14 @@ use Acelaya\QrCode\Controller\Factory\QrCodeControllerFactory;
 use Acelaya\QrCode\Controller\QrCodeController;
 use Acelaya\QrCode\Test\Service\QrCodeServiceMock;
 use Acelaya\QrCode\Test\Service\ServiceManagerMock;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class QrCodeControllerFactoryTest
  * @author Alejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class QrCodeControllerFactoryTest extends \PHPUnit_Framework_TestCase
+class QrCodeControllerFactoryTest extends TestCase
 {
     /**
      * @var QrCodeControllerFactory

@@ -2,13 +2,14 @@
 namespace Acelaya\QrCode\Test\Options;
 
 use Acelaya\QrCode\Options\QrCodeOptions;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class QrCodeOptionsTest
  * @author Alejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class QrCodeOptionsTest extends \PHPUnit_Framework_TestCase
+class QrCodeOptionsTest extends TestCase
 {
     /**
      * @var QrCodeOptions

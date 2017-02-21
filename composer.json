@@ -19,8 +19,8 @@
     ],
     "homepage": "https://github.com/acelaya/ZF2-AcQrCode",
     "require": {
-        "php" : ">=5.3.0",
-        "endroid/qrcode": "^1.2",
+        "php" : "^5.6",
+        "endroid/qrcode": "^1.6",
         "zendframework/zend-mvc": "^2.2 | ^3.0",
         "zendframework/zend-servicemanager": "^2.2 | ^3.0",
         "zendframework/zend-view": "^2.2",

@@ -2,13 +2,14 @@
 namespace Acelaya\QrCode\Test;
 
 use Acelaya\QrCode\Module;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class ModuleTest
  * @author Alejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class ModuleTest extends \PHPUnit_Framework_TestCase
+class ModuleTest extends TestCase
 {
     /**
      * @var Module

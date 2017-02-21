@@ -3,6 +3,7 @@ namespace Acelaya\QrCode\Test\View\Helper;
 
 use Acelaya\QrCode\Test\Service\QrCodeServiceMock;
 use Acelaya\QrCode\View\Helper\QrCodeHelper;
+use PHPUnit\Framework\TestCase;
 use Zend\Mvc\Router\Http\TreeRouteStack;
 use Zend\View\Renderer\PhpRenderer;
 use Zend\View\Resolver\TemplateMapResolver;
@@ -12,7 +13,7 @@ use Zend\View\Resolver\TemplateMapResolver;
  * @author Alejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class QrCodeHelperTest extends \PHPUnit_Framework_TestCase
+class QrCodeHelperTest extends TestCase
 {
     /**
      * @var QrCodeHelper

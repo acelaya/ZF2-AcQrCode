@@ -3,13 +3,14 @@ namespace Acelaya\QrCode\Test\Options\Factory;
 
 use Acelaya\QrCode\Options\Factory\QrCodeOptionsFactory;
 use Acelaya\QrCode\Test\Service\ServiceManagerMock;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class QrCodeOptionsFactoryTest
  * @author Alejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class QrCodeOptionsFactoryTest extends \PHPUnit_Framework_TestCase
+class QrCodeOptionsFactoryTest extends TestCase
 {
     /**
      * @var QrCodeOptionsFactory

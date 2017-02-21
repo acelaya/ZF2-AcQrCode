@@ -6,6 +6,7 @@ use Acelaya\QrCode\Service\QrCodeService;
 use Acelaya\QrCode\Service\QrCodeServiceInterface;
 use Acelaya\QrCode\Test\Controller\ControllerMock;
 use Endroid\QrCode\QrCode;
+use PHPUnit\Framework\TestCase;
 use Zend\Mvc\Controller\Plugin\Params;
 
 /**
@@ -13,7 +14,7 @@ use Zend\Mvc\Controller\Plugin\Params;
  * @author
  * @link
  */
-class QrCodeServiceTest extends \PHPUnit_Framework_TestCase
+class QrCodeServiceTest extends TestCase
 {
     /**
      * @var QrCodeService

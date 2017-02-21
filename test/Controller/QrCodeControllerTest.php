@@ -4,6 +4,7 @@ namespace Acelaya\QrCode\Test\Controller;
 use Acelaya\QrCode\Controller\QrCodeController;
 use Acelaya\QrCode\Service\QrCodeServiceInterface;
 use Acelaya\QrCode\Test\Service\QrCodeServiceMock;
+use PHPUnit\Framework\TestCase;
 use Zend\Http\Response as HttpResponse;
 use Zend\Mvc\Controller\PluginManager as ControllerPluginManager;
 
@@ -12,7 +13,7 @@ use Zend\Mvc\Controller\PluginManager as ControllerPluginManager;
  * @author Alejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class QrCodeControllerTest extends \PHPUnit_Framework_TestCase
+class QrCodeControllerTest extends TestCase
 {
     const CONTENT = 'FooBarContent';
 
