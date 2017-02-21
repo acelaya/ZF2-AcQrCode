@@ -5,14 +5,15 @@ use Acelaya\QrCode\Test\Service\QrCodeServiceMock;
 use Acelaya\QrCode\Test\Service\ServiceManagerMock;
 use Acelaya\QrCode\View\Helper\Factory\QrCodeHelperFactory;
 use Acelaya\QrCode\View\Helper\QrCodeHelper;
-use Zend\Mvc\Router\Http\TreeRouteStack;
+use PHPUnit\Framework\TestCase;
+use Zend\Router\Http\TreeRouteStack;
 
 /**
  * Class QrCodeHelperFactoryTest
  * @author Alejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class QrCodeHelperFactoryTest extends \PHPUnit_Framework_TestCase
+class QrCodeHelperFactoryTest extends TestCase
 {
     /**
      * @var QrCodeHelperFactory
@@ -26,7 +27,7 @@ class QrCodeHelperFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateService()
     {
-        $helper = $this->factory->createService($this->createServiceManager());
+        $helper = $this->factory->__invoke($this->createServiceManager(), '');
         $this->assertTrue($helper instanceof QrCodeHelper);
     }
 

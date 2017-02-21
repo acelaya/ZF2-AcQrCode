@@ -4,7 +4,7 @@ namespace Acelaya\QrCode\Test\Controller;
 use Zend\EventManager\EventInterface as Event;
 use Zend\Mvc\InjectApplicationEventInterface;
 use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\Console\RouteMatch;
+use Zend\Router\RouteMatch;
 use Zend\Stdlib\DispatchableInterface;
 use Zend\Stdlib\RequestInterface;
 use Zend\Stdlib\Response;

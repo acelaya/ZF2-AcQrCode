@@ -5,9 +5,9 @@ return array(
 
         /**
          * Extension used by default when no extension is provided.
-         * Default value is jpg.
+         * Default value is jpeg.
          */
-        'extension' => 'jpg',
+        'extension' => 'jpeg',
         /**
          * Default size of generated images in pixels.
          * Images are always square, which means a size of 200 will result in a 200x200 image.

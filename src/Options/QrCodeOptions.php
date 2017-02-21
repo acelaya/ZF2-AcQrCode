@@ -15,7 +15,7 @@ class QrCodeOptions extends AbstractOptions
     /**
      * @var array
      */
-    private $validExtensions = array('jpg', 'jpeg', 'png', 'gif');
+    private $validExtensions = ['jpeg', 'png', 'gif'];
 
     /**
      * @var string

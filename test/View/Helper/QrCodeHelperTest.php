@@ -3,7 +3,8 @@ namespace Acelaya\QrCode\Test\View\Helper;
 
 use Acelaya\QrCode\Test\Service\QrCodeServiceMock;
 use Acelaya\QrCode\View\Helper\QrCodeHelper;
-use Zend\Mvc\Router\Http\TreeRouteStack;
+use PHPUnit\Framework\TestCase;
+use Zend\Router\Http\TreeRouteStack;
 use Zend\View\Renderer\PhpRenderer;
 use Zend\View\Resolver\TemplateMapResolver;
 
@@ -12,7 +13,7 @@ use Zend\View\Resolver\TemplateMapResolver;
  * @author Alejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class QrCodeHelperTest extends \PHPUnit_Framework_TestCase
+class QrCodeHelperTest extends TestCase
 {
     /**
      * @var QrCodeHelper
@@ -31,9 +32,9 @@ class QrCodeHelperTest extends \PHPUnit_Framework_TestCase
     public function testAssembleRoute()
     {
         $this->assertStringStartsWith('/qr-code/generate/foobar', $this->helper->assembleRoute('foobar'));
-        $this->assertStringStartsWith('/qr-code/generate/barfoo.png', $this->helper->assembleRoute('barfoo', 'png'));
+        $this->assertStringStartsWith('/qr-code/generate/barfoo/png', $this->helper->assembleRoute('barfoo', 'png'));
         $this->assertStringStartsWith(
-            '/qr-code/generate/anothertext.gif/500',
+            '/qr-code/generate/anothertext/gif/500',
             $this->helper->assembleRoute('anothertext', 'gif', 500)
         );
     }
@@ -102,13 +103,13 @@ class QrCodeHelperTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame($this->helper, $this->helper->__invoke());
         $this->assertStringStartsWith('/qr-code/generate/foobar', $this->helper->__invoke('foobar'));
-        $this->assertStringStartsWith('/qr-code/generate/foobar.gif', $this->helper->__invoke('foobar', 'gif'));
+        $this->assertStringStartsWith('/qr-code/generate/foobar/gif', $this->helper->__invoke('foobar', 'gif'));
         $this->assertStringStartsWith(
-            '/qr-code/generate/foobar.gif/432',
+            '/qr-code/generate/foobar/gif/432',
             $this->helper->__invoke('foobar', 'gif', 432)
         );
         $this->assertStringStartsWith(
-            '/qr-code/generate/foobar.gif/432/25',
+            '/qr-code/generate/foobar/gif/432/25',
             $this->helper->__invoke('foobar', 'gif', 432, 25)
         );
     }

@@ -3,7 +3,10 @@ namespace Acelaya\QrCode\Test\Controller;
 
 use Acelaya\QrCode\Controller\QrCodeController;
 use Acelaya\QrCode\Service\QrCodeServiceInterface;
+use Acelaya\QrCode\Test\Controller\Plugin\ParamsMock;
 use Acelaya\QrCode\Test\Service\QrCodeServiceMock;
+use Interop\Container\ContainerInterface;
+use PHPUnit\Framework\TestCase;
 use Zend\Http\Response as HttpResponse;
 use Zend\Mvc\Controller\PluginManager as ControllerPluginManager;
 
@@ -12,7 +15,7 @@ use Zend\Mvc\Controller\PluginManager as ControllerPluginManager;
  * @author Alejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class QrCodeControllerTest extends \PHPUnit_Framework_TestCase
+class QrCodeControllerTest extends TestCase
 {
     const CONTENT = 'FooBarContent';
 
@@ -24,15 +27,6 @@ class QrCodeControllerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->controller = new QrCodeController($this->createQrCodeService());
-    }
-
-    public function testQrCodeServiceAwareness()
-    {
-        $newService = $this->createQrCodeService();
-        $this->assertTrue($this->controller->getQrCodeService() instanceof QrCodeServiceInterface);
-        $this->assertNotSame($newService, $this->controller->getQrCodeService());
-        $this->controller->setQrCodeService($newService);
-        $this->assertSame($newService, $this->controller->getQrCodeService());
     }
 
     public function testGenerateAction()
@@ -48,7 +42,6 @@ class QrCodeControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('Content-Length', $headers);
         $this->assertArrayHasKey('Content-Type', $headers);
         $this->assertEquals(strlen(self::CONTENT), $headers['Content-Length']);
-        $this->assertEquals($this->controller->getQrCodeService()->generateContentType(''), $headers['Content-Type']);
     }
 
     /**
@@ -61,7 +54,9 @@ class QrCodeControllerTest extends \PHPUnit_Framework_TestCase
 
     private function generatePluginManager()
     {
-        $pluginManager = new ControllerPluginManager();
+        $container = $this->prophesize(ContainerInterface::class);
+        $container->get('params')->willReturn(new ParamsMock());
+        $pluginManager = new ControllerPluginManager($container->reveal());
         $pluginManager->setInvokableClass('params', 'Acelaya\QrCode\Test\Controller\Plugin\ParamsMock');
         return $pluginManager;
     }

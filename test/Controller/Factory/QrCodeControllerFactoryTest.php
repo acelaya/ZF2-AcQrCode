@@ -5,13 +5,14 @@ use Acelaya\QrCode\Controller\Factory\QrCodeControllerFactory;
 use Acelaya\QrCode\Controller\QrCodeController;
 use Acelaya\QrCode\Test\Service\QrCodeServiceMock;
 use Acelaya\QrCode\Test\Service\ServiceManagerMock;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class QrCodeControllerFactoryTest
  * @author Alejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class QrCodeControllerFactoryTest extends \PHPUnit_Framework_TestCase
+class QrCodeControllerFactoryTest extends TestCase
 {
     /**
      * @var QrCodeControllerFactory
@@ -25,9 +26,8 @@ class QrCodeControllerFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateService()
     {
-        $service = $this->factory->createService($this->createServiceManager());
+        $service = $this->factory->__invoke($this->createServiceManager(), '');
         $this->assertTrue($service instanceof QrCodeController);
-        $this->assertTrue($service->getQrCodeService() instanceof QrCodeServiceMock);
     }
 
     private function createServiceManager()

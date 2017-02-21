@@ -2,10 +2,12 @@
 namespace Acelaya\QrCode\Controller\Factory;
 
 use Acelaya\QrCode\Controller\QrCodeController;
-use Acelaya\QrCode\Service\QrCodeServiceInterface;
-use Zend\Mvc\Controller\ControllerManager;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Acelaya\QrCode\Service\QrCodeService;
+use Interop\Container\ContainerInterface;
+use Interop\Container\Exception\ContainerException;
+use Zend\ServiceManager\Exception\ServiceNotCreatedException;
+use Zend\ServiceManager\Exception\ServiceNotFoundException;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
  * Class QrCodeControllerFactory
@@ -15,16 +17,20 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class QrCodeControllerFactory implements FactoryInterface
 {
     /**
-     * Create service
+     * Create an object
      *
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return mixed
+     * @param  ContainerInterface $container
+     * @param  string $requestedName
+     * @param  null|array $options
+     * @return object
+     * @throws ServiceNotFoundException if unable to resolve the service.
+     * @throws ServiceNotCreatedException if an exception is raised when
+     *     creating a service.
+     * @throws ContainerException if any other error occurs
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /** @var ControllerManager $serviceLocator */
-        /** @var QrCodeServiceInterface $qrCodeService */
-        $qrCodeService = $serviceLocator->getServiceLocator()->get('Acelaya\QrCode\Service\QrCodeService');
+        $qrCodeService = $container->get(QrCodeService::class);
         return new QrCodeController($qrCodeService);
     }
 }

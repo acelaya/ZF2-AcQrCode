@@ -1,7 +1,6 @@
 <?php
 namespace Acelaya\QrCode\Controller;
 
-use Acelaya\QrCode\Service\QrCodeServiceAwareInterface;
 use Acelaya\QrCode\Service\QrCodeServiceInterface;
 use Zend\Http\Response as HttpResponse;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -11,7 +10,7 @@ use Zend\Mvc\Controller\AbstractActionController;
  * @author Alejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class QrCodeController extends AbstractActionController implements QrCodeServiceAwareInterface
+class QrCodeController extends AbstractActionController
 {
     /**
      * @var QrCodeServiceInterface
@@ -50,22 +49,5 @@ class QrCodeController extends AbstractActionController implements QrCodeService
             'Content-Type'      => $contentType
         ));
         return $resp;
-    }
-
-    /**
-     * @param QrCodeServiceInterface $qrCodeService
-     * @return void
-     */
-    public function setQrCodeService(QrCodeServiceInterface $qrCodeService)
-    {
-        $this->qrCodeService = $qrCodeService;
-    }
-
-    /**
-     * @return QrCodeServiceInterface
-     */
-    public function getQrCodeService()
-    {
-        return $this->qrCodeService;
     }
 }
