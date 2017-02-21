@@ -32,7 +32,7 @@ class QrCodeHelperFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $renderer = $container->has('viewrenderer') ? $container->get('viewrenderer') : new PhpRenderer();
+        $renderer = $container->has(PhpRenderer::class) ? $container->get(PhpRenderer::class) : new PhpRenderer();
         /** @var RouteStackInterface $router */
         $router = $container->get('router');
         $service = $container->get(QrCodeService::class);

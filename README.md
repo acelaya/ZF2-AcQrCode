@@ -14,14 +14,10 @@ It has been based on the [EndroidQrCodeBundle](https://github.com/endroid/Endroi
 Installation
 ------------
 
-The preferred installation method is by using [composer](https://getcomposer.com). Just add this package to your composer.json
+The preferred installation method is by using [composer](https://getcomposer.com). Just require this package with composer
 
-```json
-{
-    "require": {
-        "acelaya/zf2-acqrcode": "0.*"
-    }
-}
+```
+composer require acelaya/zf2-acqrcode
 ```
 and update your dependencies with composer `php composer.phar update`
 
@@ -69,10 +65,10 @@ All the methods in this view helper get the 4 params in the same order; the mess
 This will produce this image
 
 ```html
-<img src="/qr-code/generate/The%20message.png/300/20">
+<img src="/qr-code/generate/The%20message/png/300/20">
 ```
 
-If you need aditional attributes in the img tag, if the last argument is an array, it will be treated as the attributes and their values.
+If you need additional attributes in the img tag, if the last argument is an array, it will be treated as the attributes and their values.
 
 ```php
 <?php echo $this->qrCode()->renderImg('The message', 'png', ['title' => 'This is a cool QR code', 'class' => 'img-thumbnail']); ?>
@@ -81,7 +77,7 @@ If you need aditional attributes in the img tag, if the last argument is an arra
 This will produce this image:
 
 ```html
-<img src="/qr-code/generate/The%20message.png" title="This is a cool QR code" class="img-thumbnail">
+<img src="/qr-code/generate/The%20message/png" title="This is a cool QR code" class="img-thumbnail">
 ```
 
 You can also render a base64-encoded image, instead of using an internal route. This is very useful when you need to render URLs, which is one of the most common use cases.
@@ -107,7 +103,7 @@ If you just need to get the route, this view helper is a shortcut to the `url` v
 </div>
 ```
 
-If you need aditional route options to be used, it can be done like this.
+If you need additional route options to be used, it can be done like this.
 
 ```php
 <div>
@@ -135,7 +131,7 @@ file_put_contents('/path/to/file.png', $content);
 
 The `getQrCodeContent` method accepts the four params in the same order (`$message`, `$extension`, `$size`, `$padding`), being the first, the only mandatory argument.
 
-Aditionally you can pass a `Zend\Controller\Plugin\Params` object as the first param, in order to get the information from route params, ignoring the rest of the arguments passed.
+Additionally you can pass a `Zend\Controller\Plugin\Params` object as the first param, in order to get the information from route params, ignoring the rest of the arguments passed.
 
 ```php
 // In a controller...
