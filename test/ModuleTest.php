@@ -32,14 +32,4 @@ class ModuleTest extends TestCase
         $this->assertArrayHasKey('view_manager', $config);
         $this->assertEquals(include __DIR__ . '/../config/module.config.php', $config);
     }
-
-    public function testGetAutoloaderConfig()
-    {
-        $config = $this->module->getAutoloaderConfig();
-        $this->assertTrue(is_array($config));
-        $this->assertArrayHasKey('Zend\Loader\ClassMapAutoloader', $config);
-        $this->assertArrayHasKey('Zend\Loader\StandardAutoloader', $config);
-        $this->assertTrue(is_array($config['Zend\Loader\ClassMapAutoloader']));
-        $this->assertTrue(is_array($config['Zend\Loader\StandardAutoloader']));
-    }
 }

@@ -32,9 +32,9 @@ class QrCodeHelperTest extends TestCase
     public function testAssembleRoute()
     {
         $this->assertStringStartsWith('/qr-code/generate/foobar', $this->helper->assembleRoute('foobar'));
-        $this->assertStringStartsWith('/qr-code/generate/barfoo.png', $this->helper->assembleRoute('barfoo', 'png'));
+        $this->assertStringStartsWith('/qr-code/generate/barfoo/png', $this->helper->assembleRoute('barfoo', 'png'));
         $this->assertStringStartsWith(
-            '/qr-code/generate/anothertext.gif/500',
+            '/qr-code/generate/anothertext/gif/500',
             $this->helper->assembleRoute('anothertext', 'gif', 500)
         );
     }
@@ -103,13 +103,13 @@ class QrCodeHelperTest extends TestCase
     {
         $this->assertSame($this->helper, $this->helper->__invoke());
         $this->assertStringStartsWith('/qr-code/generate/foobar', $this->helper->__invoke('foobar'));
-        $this->assertStringStartsWith('/qr-code/generate/foobar.gif', $this->helper->__invoke('foobar', 'gif'));
+        $this->assertStringStartsWith('/qr-code/generate/foobar/gif', $this->helper->__invoke('foobar', 'gif'));
         $this->assertStringStartsWith(
-            '/qr-code/generate/foobar.gif/432',
+            '/qr-code/generate/foobar/gif/432',
             $this->helper->__invoke('foobar', 'gif', 432)
         );
         $this->assertStringStartsWith(
-            '/qr-code/generate/foobar.gif/432/25',
+            '/qr-code/generate/foobar/gif/432/25',
             $this->helper->__invoke('foobar', 'gif', 432, 25)
         );
     }

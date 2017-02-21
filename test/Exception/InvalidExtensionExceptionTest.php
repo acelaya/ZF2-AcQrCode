@@ -14,7 +14,7 @@ class InvalidExtensionExceptionTest extends TestCase
     public function testGetValidExtensions()
     {
         $this->assertTrue(is_array(InvalidExtensionException::getValidExtensions()));
-        $this->assertCount(4, InvalidExtensionException::getValidExtensions());
+        $this->assertCount(3, InvalidExtensionException::getValidExtensions());
     }
 
     public function testFromExtension()
