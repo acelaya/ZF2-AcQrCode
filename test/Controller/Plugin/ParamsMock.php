@@ -11,7 +11,7 @@ use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 class ParamsMock extends AbstractPlugin
 {
     private $params = array(
-        'extension' => 'jpg'
+        'extension' => 'jpeg'
     );
 
     public function __invoke($name = null)

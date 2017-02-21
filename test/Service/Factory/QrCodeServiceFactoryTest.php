@@ -3,14 +3,16 @@ namespace Acelaya\QrCode\Test\Service\Factory;
 
 use Acelaya\QrCode\Options\QrCodeOptions;
 use Acelaya\QrCode\Service\Factory\QrCodeServiceFactory;
+use Acelaya\QrCode\Service\QrCodeService;
 use Acelaya\QrCode\Test\Service\ServiceManagerMock;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class QrCodeServiceFactoryTest
  * @author Alejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class QrCodeServiceFactoryTest extends \PHPUnit_Framework_TestCase
+class QrCodeServiceFactoryTest extends TestCase
 {
     /**
      * @var QrCodeServiceFactory
@@ -24,10 +26,10 @@ class QrCodeServiceFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateService()
     {
-        $service = $this->serviceFactory->createService(new ServiceManagerMock(array(
-            'Acelaya\QrCode\Options\QrCodeOptions' => new QrCodeOptions()
-        )));
-        $this->assertInstanceOf('Acelaya\QrCode\Service\QrCodeService', $service);
+        $service = $this->serviceFactory->__invoke(new ServiceManagerMock([
+            QrCodeOptions::class => new QrCodeOptions()
+        ]), '');
+        $this->assertInstanceOf(QrCodeService::class, $service);
     }
 
     /**
@@ -35,6 +37,6 @@ class QrCodeServiceFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateServiceWithNoOptionsThrowsException()
     {
-        $this->serviceFactory->createService(new ServiceManagerMock());
+        $this->serviceFactory->__invoke(new ServiceManagerMock(), '');
     }
 }

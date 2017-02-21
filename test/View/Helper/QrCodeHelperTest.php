@@ -4,7 +4,7 @@ namespace Acelaya\QrCode\Test\View\Helper;
 use Acelaya\QrCode\Test\Service\QrCodeServiceMock;
 use Acelaya\QrCode\View\Helper\QrCodeHelper;
 use PHPUnit\Framework\TestCase;
-use Zend\Mvc\Router\Http\TreeRouteStack;
+use Zend\Router\Http\TreeRouteStack;
 use Zend\View\Renderer\PhpRenderer;
 use Zend\View\Resolver\TemplateMapResolver;
 

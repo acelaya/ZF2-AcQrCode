@@ -2,6 +2,7 @@
 namespace Acelaya\QrCode\Test\Options\Factory;
 
 use Acelaya\QrCode\Options\Factory\QrCodeOptionsFactory;
+use Acelaya\QrCode\Options\QrCodeOptions;
 use Acelaya\QrCode\Test\Service\ServiceManagerMock;
 use PHPUnit\Framework\TestCase;
 
@@ -27,7 +28,7 @@ class QrCodeOptionsFactoryTest extends TestCase
         $sm = new ServiceManagerMock(array(
             'Config' => array()
         ));
-        $options = $this->optionsFactory->createService($sm);
-        $this->assertInstanceOf('Acelaya\QrCode\Options\QrCodeOptions', $options);
+        $options = $this->optionsFactory->__invoke($sm, '');
+        $this->assertInstanceOf(QrCodeOptions::class, $options);
     }
 }

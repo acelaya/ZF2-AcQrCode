@@ -26,9 +26,8 @@ class QrCodeControllerFactoryTest extends TestCase
 
     public function testCreateService()
     {
-        $service = $this->factory->createService($this->createServiceManager());
+        $service = $this->factory->__invoke($this->createServiceManager(), '');
         $this->assertTrue($service instanceof QrCodeController);
-        $this->assertTrue($service->getQrCodeService() instanceof QrCodeServiceMock);
     }
 
     private function createServiceManager()

@@ -2,7 +2,7 @@
 namespace Acelaya\QrCode\View\Helper;
 
 use Acelaya\QrCode\Service\QrCodeServiceInterface;
-use Zend\Mvc\Router\RouteStackInterface;
+use Zend\Router\RouteStackInterface;
 use Zend\View\Helper\AbstractHelper;
 use Zend\View\Renderer\RendererInterface;
 

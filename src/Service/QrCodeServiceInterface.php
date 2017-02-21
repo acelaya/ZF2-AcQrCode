@@ -11,7 +11,7 @@ use Zend\Mvc\Controller\Plugin\Params;
  */
 interface QrCodeServiceInterface
 {
-    const DEFAULT_EXTENSION = 'jpg';
+    const DEFAULT_EXTENSION = 'jpeg';
     const DEFAULT_SIZE      = 200;
     const DEFAULT_PADDING   = 10;
 
