@@ -18,6 +18,7 @@ before_script:
 
 script:
   - mkdir build
+  - ./vendor/bin/phpcs --standard=PSR2 ./src/ ./test/ ./config -p
   - ./vendor/bin/phpunit -c test/phpunit.xml --coverage-clover build/clover.xml
 
 after_script:
