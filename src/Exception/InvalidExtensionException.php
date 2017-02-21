@@ -14,7 +14,6 @@ class InvalidExtensionException extends \Exception
      * @var array
      */
     private static $validExtensions = array(
-        'jpg',
         'jpeg',
         'png',
         'gif'

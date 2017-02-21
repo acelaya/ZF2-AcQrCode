@@ -1,16 +1,15 @@
 <?php
 namespace Acelaya\QrCode\Test\Service;
 
+use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Exception;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
 
 /**
  * Class ServiceManagerMock
  * @author Alejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class ServiceManagerMock implements ServiceLocatorInterface, ServiceLocatorAwareInterface
+class ServiceManagerMock implements ContainerInterface
 {
     /**
      * @var array
@@ -50,25 +49,5 @@ class ServiceManagerMock implements ServiceLocatorInterface, ServiceLocatorAware
     public function has($name)
     {
         return isset($this->services[$name]);
-    }
-
-    /**
-     * Set service locator
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     */
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        // Do nothing
-    }
-
-    /**
-     * Get service locator
-     *
-     * @return ServiceLocatorInterface
-     */
-    public function getServiceLocator()
-    {
-        return $this;
     }
 }

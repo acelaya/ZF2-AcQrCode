@@ -2,7 +2,7 @@
 namespace Acelaya\QrCode\View\Helper;
 
 use Acelaya\QrCode\Service\QrCodeServiceInterface;
-use Zend\Mvc\Router\RouteStackInterface;
+use Zend\Router\RouteStackInterface;
 use Zend\View\Helper\AbstractHelper;
 use Zend\View\Renderer\RendererInterface;
 
@@ -58,8 +58,7 @@ class QrCodeHelper extends AbstractHelper implements QrCodeHelperInterface
      */
     public function __invoke($message = null, $extension = null, $size = null, $padding = null)
     {
-        if (
-            count(func_get_args()) == 0
+        if (count(func_get_args()) == 0
             || ((!isset($message) && !isset($extension) && !isset($size) && !isset($padding)))
         ) {
             return $this;

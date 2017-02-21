@@ -3,9 +3,9 @@ namespace Acelaya\QrCode\Test;
 
 use Acelaya\QrCode\Options\QrCodeOptions;
 use Acelaya\QrCode\Service\QrCodeService;
-use Acelaya\QrCode\Service\QrCodeServiceInterface;
 use Acelaya\QrCode\Test\Controller\ControllerMock;
 use Endroid\QrCode\QrCode;
+use PHPUnit\Framework\TestCase;
 use Zend\Mvc\Controller\Plugin\Params;
 
 /**
@@ -13,7 +13,7 @@ use Zend\Mvc\Controller\Plugin\Params;
  * @author
  * @link
  */
-class QrCodeServiceTest extends \PHPUnit_Framework_TestCase
+class QrCodeServiceTest extends TestCase
 {
     /**
      * @var QrCodeService
@@ -35,7 +35,6 @@ class QrCodeServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('image/png', $this->qrCodeService->generateContentType('png'));
         $this->assertEquals('image/gif', $this->qrCodeService->generateContentType('gif'));
         $this->assertEquals('image/jpeg', $this->qrCodeService->generateContentType('jpeg'));
-        $this->assertEquals('image/jpeg', $this->qrCodeService->generateContentType('jpg'));
     }
 
     /**
