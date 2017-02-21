@@ -1,4 +1,4 @@
-## ZF2-AcQrCode
+## ZF-AcQrCode
 
 [![Build Status](https://travis-ci.org/acelaya/ZF2-AcQrCode.svg?branch=develop)](https://travis-ci.org/acelaya/ZF2-AcQrCode)
 [![Code Coverage](https://scrutinizer-ci.com/g/acelaya/ZF2-AcQrCode/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/acelaya/ZF2-AcQrCode/?branch=master)
@@ -7,7 +7,7 @@
 [![Total Downloads](https://poser.pugx.org/acelaya/zf2-acqrcode/downloads.png)](https://packagist.org/packages/acelaya/zf2-acqrcode)
 [![License](https://poser.pugx.org/acelaya/zf2-acqrcode/license.png)](https://packagist.org/packages/acelaya/zf2-acqrcode)
 
-This Zend Framework 2 module allows you to easily generate QR codes by using the [Endroid QR Code](https://github.com/endroid/QrCode) library, by [Endroid](https://github.com/endroid).
+This Zend Framework module allows you to easily generate QR codes by using the [Endroid QR Code](https://github.com/endroid/QrCode) library, by [Endroid](https://github.com/endroid).
 
 It has been based on the [EndroidQrCodeBundle](https://github.com/endroid/EndroidQrCodeBundle) Symfony bundle.
 
