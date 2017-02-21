@@ -6,7 +6,7 @@
         {
             "name": "Alejandro Celaya Alastrué",
             "email": "alejandro@alejandrocelaya.com",
-            "homepage": "http://www.alejandrocelaya.com",
+            "homepage": "https://www.alejandrocelaya.com",
             "role": "Developer"
         }
     ],
@@ -43,6 +43,12 @@
     "autoload-dev": {
         "psr-4": {
             "Acelaya\\QrCode\\Test\\": "test/"
+        }
+    },
+    "extra": {
+        "zf": {
+            "module": "Acelaya\\QrCode",
+            "config-provider": "Acelaya\\QrCode\\ConfigProvider"
         }
     }
 }

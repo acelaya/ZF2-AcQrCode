@@ -6,6 +6,7 @@
 
         <testsuite name="Acelaya\QrCode Module class">
             <file>./ModuleTest.php</file>
+            <file>./ConfigProviderTest.php</file>
         </testsuite>
         <testsuite name="Acelaya\QrCode Services">
             <directory>./Service</directory>
